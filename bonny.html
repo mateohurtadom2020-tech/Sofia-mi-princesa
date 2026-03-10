@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monumento a Bonny 🐾</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Definimos tus colores */
+        :root {
+            --rojo-bonny: #C33149;
+            --crema-bonny: #F3D9B1;
+            --verde-bonny: #A8C256;
+            --negro-fondo: #1A1A1A;
+            /* Usamos un negro suave para el fondo, como en el diseño de referencia */
+        }
+
+        body {
+            background-color: var(--negro-fondo);
+            color: white;
+            font-family: 'Quicksand', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Contenedor principal de la cuadrícula (Grid) */
+        .grid-monumento {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            /* Dos columnas iguales */
+            grid-template-rows: auto auto;
+            /* Dos filas, altura automática */
+            gap: 15px;
+            /* Espacio entre los bloques, como en el diseño original */
+            max-width: 450px;
+            width: 100%;
+        }
+
+        /* Título del Monumento (fuera del grid) */
+        .header-monumento {
+            grid-column: 1 / -1;
+            /* Ocupa todo el ancho */
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            color: var(--crema-bonny);
+            /* Usamos el crema para el título principal */
+            font-size: 3rem;
+            margin: 0;
+        }
+
+        /* Estilo base para todos los bloques */
+        .bloque {
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .bloque:hover {
+            transform: translateY(-3px);
+            /* Pequeño efecto al pasar el mouse */
+        }
+
+        /* --- BLOQUE SUPERIOR (Rojo) --- */
+        .bloque-principal {
+            grid-column: 1 / -1;
+            /* Ocupa las dos columnas */
+            background-color: var(--rojo-bonny);
+            color: white;
+            border-radius: 25px 25px 5px 25px;
+            /* Esquinas asimétricas como en el diseño */
+            min-height: 200px;
+            text-align: center;
+        }
+
+        .foto-bonny {
+            max-width: 100%;
+            border-radius: 15px;
+            margin-top: 10px;
+        }
+
+        /* --- BLOQUE INFERIOR IZQUIERDO (Crema) --- */
+        .bloque-info {
+            background-color: var(--crema-bonny);
+            color: #333;
+            /* Texto oscuro para que se lea bien */
+            border-radius: 25px 5px 25px 25px;
+            /* Esquinas opuestas al diseño original para equilibrio */
+            text-align: left;
+        }
+
+        .fecha-especial {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--rojo-bonny);
+        }
+
+        /* --- BLOQUE INFERIOR DERECHO (Verde) --- */
+        .bloque-accion {
+            background-color: var(--verde-bonny);
+            color: white;
+            border-radius: 5px 25px 25px 25px;
+            text-align: center;
+            align-items: center;
+        }
+
+        .btn-volver {
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            padding: 8px 18px;
+            border: 2px solid white;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .btn-volver:hover {
+            background-color: white;
+            color: var(--verde-bonny);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="loader-especial-perros" style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #feede0; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100000;
+    transition: opacity 0.6s ease, visibility 0.6s;
+">
+
+        <img src="Gifs/dog-running.gif" alt="Perrito corriendo" style="
+        width: 100px;
+        height: auto;
+        margin-bottom: 20px;
+    ">
+
+        <p style="
+        font-family: 'Quicksand', sans-serif;
+        color: #445E1C;
+        font-weight: bold;
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+    ">
+
+            Buscando recuerdos...
+        </p>
+    </div>
+
+    <style>
+        /* Clase para ocultar el loader con suavidad */
+        .loader-perros-hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+    </style>
+
+    <div class="grid-monumento">
+
+        <div class="header-monumento">
+            <h1>El Rincón de Bonny 🌺</h1>
+        </div>
+
+        <div class="bloque bloque-principal">
+            <h2 style="margin: 0;">Mi necia bonita 😭</h2>
+            <img src="Imagenes/Bonny-grande-mama.jpg" alt="Bonny" class="foto-bonny">
+        </div>
+
+        <div class="bloque bloque-info">
+            <p class="fecha-especial">Siempre en mi corazón</p>
+            <p style="margin: 5px 0 0 0; font-size: 0.9rem;">
+                "Me haces demasiada falta, la alegria que me diste la guardare para siempre."
+            </p>
+        </div>
+
+        <div class="bloque bloque-accion">
+            <p style="margin: 0; font-size: 0.9rem;">Gracias por todo, bonita.</p>
+            <a href="index.html" class="btn-volver">← Volver</a>
+        </div>
+
+    </div>
+
+    <script>
+        // Este código detecta cuando las fotos y todo el HTML terminaron de cargar
+        window.addEventListener("load", function () {
+            const loader = document.getElementById("loader-especial-perros");
+
+            // Le damos un pequeño delay extra de 800ms para que se aprecie el GIF
+            setTimeout(() => {
+                loader.classList.add("loader-perros-hidden");
+            }, 800);
+        });
+    </script>
+
+</body>
+
+</html>

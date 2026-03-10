@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lo que no te dije... 💓</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@500&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            background: #000;
+            color: white;
+            font-family: 'Quicksand', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .caja {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 30px;
+            border: 1px solid #ff4d4d;
+            max-width: 400px;
+        }
+
+        h1 {
+            font-family: 'Dancing Script';
+            color: #ff4d4d;
+            font-size: 2.5rem;
+        }
+
+        p {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .btn-volver {
+            margin-top: 20px;
+            background: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="loader-wrapper" style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fce4ec; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100000; 
+    transition: opacity 0.6s ease, visibility 0.6s;
+">
+        <div style="font-size: 60px; animation: latido-suave 1.5s infinite;">❤️</div>
+        <p style="
+        font-family: 'Quicksand', sans-serif;
+        color: #d14d4d;
+        margin-top: 20px;
+        font-weight: bold;
+        letter-spacing: 1px;
+    ">Preparando algo para Sofi...</p>
+    </div>
+
+    <style>
+        @keyframes latido-suave {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .loader-hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Estilos para los pétalos de rosa */
+        .petalo {
+            position: fixed;
+            top: -50px;
+            font-size: 24px;
+            /* Un poco más grandes para que resalten */
+            user-select: none;
+            pointer-events: none;
+            /* Esto permite tocar los botones a través de los pétalos */
+            z-index: 99999;
+            /* Por encima de la caja y de todo */
+            animation: caer linear infinite;
+            filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.3));
+            /* Un pequeño brillo rojo */
+        }
+
+        @keyframes caer {
+            0% {
+                transform: translateY(0) rotate(0deg) translateX(0);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.8;
+            }
+
+            90% {
+                opacity: 0.8;
+            }
+
+            100% {
+                /* Añadimos un poco de movimiento lateral (oscilación) */
+                transform: translateY(110vh) rotate(720deg) translateX(50px);
+                opacity: 0;
+            }
+        }
+    </style>
+
+    <div class="caja">
+        <h1>Sofi... lo siento jajaj</h1>
+        <p>
+            El sábado andaba tan nervioso que me quedé "ido" mil veces. Quería decirte que te veías <b>hermosa</b>
+            arreglada para mí, pero me dio pena. Me moría de ganas de recostarme en tu hombro mientras jugabas, y de
+            darte un abrazo de esos que duran horas. <br><br>
+            Perdón por mis respuestas raras, es que me pones el mundo al revés. ¡Te amo! 💖
+        </p>
+        <a href="index.html" class="btn-volver">Volver al inicio ✨</a>
+    </div>
+
+    <script>
+
+        // Este código quita la pantalla de carga cuando el navegador termina de leer todo
+        window.addEventListener("load", function () {
+            const loader = document.getElementById("loader-wrapper");
+            // Un pequeño delay extra para que no sea un parpadeo brusco
+            setTimeout(() => {
+                loader.classList.add("loader-hidden");
+            }, 600);
+        });
+
+        function crearPetalo() {
+        const petalo = document.createElement('div');
+        petalo.classList.add('petalo');
+        
+        // Solo cosas rojas y románticas para que pegue con el fondo
+        const tipos = ['🌸', '🌹', '❤️', '🪻']; 
+        petalo.innerText = tipos[Math.floor(Math.random() * tipos.length)];
+        
+        // Posición horizontal aleatoria
+        petalo.style.left = Math.random() * 100 + 'vw';
+        
+        // Tamaño aleatorio para dar profundidad
+        const tamaño = Math.random() * 20 + 15 + 'px';
+        petalo.style.fontSize = tamaño;
+        
+        // Velocidad: unos más rápidos que otros
+        const duracion = Math.random() * 3 + 5 + 's';
+        petalo.style.animationDuration = duracion;
+        
+        // Un poco de transparencia aleatoria
+        petalo.style.opacity = Math.random() * 0.5 + 0.4;
+
+        document.body.appendChild(petalo);
+
+        // Limpiar para que el cel no se trabe
+        setTimeout(() => {
+            petalo.remove();
+        }, parseFloat(duracion) * 1000);
+    }
+
+    // Un pétalo nuevo cada 400ms para que no sature la pantalla del cel
+    setInterval(crearPetalo, 400);
+
+    </script>
+
+</body>
+
+</html>

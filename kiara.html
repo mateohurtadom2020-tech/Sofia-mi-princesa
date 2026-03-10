@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiara 🌻</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@500&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            background-color: #FFB997;
+            background-image: radial-gradient(#ffccb3 1px, transparent 1px);
+            background-size: 20px 20px;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Quicksand', sans-serif;
+            overflow-x: hidden;
+            /* Evita el baile lateral */
+            padding: 20px;
+            /* Espacio para que no pegue a los bordes */
+        }
+
+        .album-postal {
+            position: relative;
+            background-color: #FAFAF7;
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+            /* ESTO ES LO IMPORTANTE */
+            width: 90%;
+            /* En celular ocupará casi todo el ancho */
+            max-width: 350px;
+            /* En laptop no se hará gigante, se quedará en 350px */
+
+            border: 2px solid #f0e6e6;
+            box-sizing: border-box;
+            /* Para que el padding no estire la tarjeta */
+        }
+
+        .foto-marco {
+            width: 100%;
+            /* Que la foto use el espacio disponible */
+            max-height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Si tienes dos fotos a la par */
+        .contenedor-fotos {
+            display: flex;
+            flex-direction: column;
+            /* Una arriba de otra en cel para que se vean grandes */
+            gap: 15px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+
+        .btn-volver {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 25px;
+            background-color: #FFB997;
+            /* El mismo color del fondo para que combine */
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-volver:hover {
+            background-color: #ff9a6b;
+            /* Se oscurece un poquito al tocarlo */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-volver:active {
+            transform: translateY(0);
+        }
+
+        .huella-efecto {
+            position: fixed;
+            font-size: 48px;
+            /* Más grandes para que se noten bien */
+            pointer-events: none;
+            z-index: 9999;
+            filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.1));
+            /* Sombra suave */
+            animation: aparecerPaso 1.4s ease-out forwards;
+        }
+
+        @keyframes aparecerPaso {
+            0% {
+                transform: scale(0.4) rotate(-15deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(1.1) rotate(-15deg);
+                opacity: 0;
+            }
+        }
+
+        /* Contenedor para que la foto no se corte al agrandarse */
+        .contenedor-foto-interactiva {
+            position: relative;
+            /* Clave para que el moño no flote por la pantalla */
+            display: inline-block;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        /* El accesorio (moño, hueso, etc.) */
+        .sticker-accesorio {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 60px !important;
+            height: auto;
+            z-index: 999;
+            pointer-events: none;
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+            /* Transición suave para cuando se detenga la animación */
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Cuando tocamos la foto */
+        .foto-activada {
+            position: absolute;
+            transform: scale(1.15);
+            /* La foto se acerca */
+        }
+
+        .foto-activada .accesorio-sticker {
+            transform: scale(1) rotate(0deg);
+            /* El sticker aparece con un giro */
+            opacity: 1;
+        }
+
+        .contenedor-foto-interactiva.activado {
+            animation: brinco 0.4s ease;
+            transform: scale(1);
+            /* Nos aseguramos que se mantenga en su tamaño original */
+            animation: sutilAgrandar 0.3s ease-out forwards;
+        }
+
+        .contenedor-foto-interactiva.activado .sticker-accesorio {
+            animation: baileMono 0.8s ease-in-out infinite;
+        }
+
+        .activado .sticker-accesorio {
+            opacity: 1;
+            transform: scale(1) rotate(-10deg);
+        }
+
+        /* Animación para el moño (vaivén) */
+        @keyframes baileMoño {
+            0% {
+                transform: rotate(-10deg);
+            }
+
+            50% {
+                transform: rotate(10deg);
+            }
+
+            100% {
+                transform: rotate(-10deg);
+            }
+        }
+
+        @keyframes sutilAgrandar {
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(1.05);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="loader-especial-perros" style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #feede0; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100000;
+    transition: opacity 0.6s ease, visibility 0.6s;
+">
+
+        <img src="Gifs/dog-running.gif" alt="Perrito corriendo" style="
+        width: 100px;
+        height: auto;
+        margin-bottom: 20px;
+    ">
+
+        <p style="
+        font-family: 'Quicksand', sans-serif;
+        color: #445E1C;
+        font-weight: bold;
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+    ">
+
+            Buscando recuerdos...
+        </p>
+    </div>
+
+    <style>
+        /* Clase para ocultar el loader con suavidad */
+        .loader-perros-hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+    </style>
+
+    <div class="album-postal">
+        <div class="contenedor-fotos">
+            <div class="contenedor-foto-interactiva" id="bloqueKiara">
+                <img src="Imagenes/Kiara.jpg" alt="Kiara" class="foto-marco">
+
+                <img src="Imagenes/date.png" class="sticker-accesorio" id="elMoño">
+            </div>
+
+            <div class="foto-marco proximamente">
+                <span style="font-size: 2rem;">📷</span>
+                <p>Más fotos pronto</p>
+            </div>
+        </div>
+
+        <h2>Kiara</h2>
+
+        <p class="dedicatoria">
+            "Una vez que entra a tu vida, jamas sale."
+        </p>
+
+        <script>
+            function validarArchivo() {
+                const input = document.getElementById('subir-foto');
+                const display = document.getElementById('nombre-archivo');
+                if (input.files.length > 0) {
+                    display.innerText = "✅ Lista: " + input.files[0].name;
+                    display.style.color = "#445E1C";
+                }
+            }
+        </script>
+        <div
+            style="margin: 30px auto; padding: 25px; background-color: #FAFAF7; border-radius: 30px; border: 3px dashed #FFB997; max-width: 350px; text-align: center;">
+            <p style="font-family: 'Quicksand', sans-serif; color: #d35400; font-weight: bold; margin-bottom: 15px;">
+                ¿Tienes más fotos de Kiara? <br>
+                <span style="font-size: 0.8rem; font-weight: 500;">¡Ayúdame a completar su álbum! 🐾</span>
+            </p>
+
+            <a href="https://forms.gle/MdxG4sN9hnCL1bvm7" target="_blank" style="text-decoration: none; 
+              display: flex; /* CAMBIO 1: Activamos Flexbox */
+              justify-content: center; /* CAMBIO 2: Centramos horizontalmente */
+              align-items: center; /* CAMBIO 3: Centramos verticalmente */
+              gap: 10px; /* Espacio perfecto entre texto e icono */
+              background-color: #445E1C; 
+              color: white; 
+              padding: 15px 30px; 
+              border-radius: 50px; 
+              font-weight: bold; 
+              width: 85%; /* Mantenemos tu ancho */
+              margin: 0 auto; /* Centramos el bloque entero en la tarjeta */
+              cursor: pointer; 
+              transition: 0.3s; 
+              box-shadow: 0 4px 15px rgba(68, 94, 28, 0.2); 
+              font-family: 'Quicksand', sans-serif; 
+              box-sizing: border-box; /* Evita que el padding estire el ancho */">
+                Subir Foto 📂
+            </a>
+        </div>
+
+        <a href="index.html" class="btn-volver">Regresar</a>
+    </div>
+
+    <script>
+        document.addEventListener('click', function (e) {
+            const x = e.clientX;
+            const y = e.clientY;
+
+            // Definimos la secuencia: [distancia horizontal (X), distancia vertical (Y)]
+            // Los valores negativos en Y son hacia ARRIBA de la pantalla.
+            const secuenciaPasos = [
+                { dx: 0, dy: 0 },      // Pata 1: Derecha (inicio)
+                { dx: -35, dy: -50 },  // Pata 2: Izquierda (más adelante y al lado)
+                { dx: 5, dy: -100 },   // Pata 3: Derecha (vuelve a cruzar)
+                { dx: -30, dy: -150 }  // Pata 4: Izquierda (final del paso)
+            ];
+
+            secuenciaPasos.forEach((paso, i) => {
+                setTimeout(() => {
+                    const huella = document.createElement('div');
+                    huella.innerHTML = '🐾';
+                    huella.className = 'huella-efecto';
+
+                    // Aplicamos el zigzag realista
+                    huella.style.left = (x + paso.dx) + 'px';
+                    huella.style.top = (y + paso.dy) + 'px';
+
+                    document.body.appendChild(huella);
+
+                    setTimeout(() => huella.remove(), 1400);
+                }, i * 300); // 300ms entre pasos para que se note el ritmo
+            });
+        });
+
+        const bloqueKiara = document.getElementById('bloqueKiara');
+
+        bloqueKiara.addEventListener('click', function (e) {
+            e.stopPropagation(); // Evita que salgan huellas justo encima de la foto
+
+            // Quitamos y ponemos la clase para que la animación se repita cada vez que tocas
+            this.classList.remove('activado');
+            void this.offsetWidth; // Truco de magia para "reiniciar" la animación en el navegador
+            this.classList.toggle('activado');
+
+            // Si prefieres que el moño se quede fijo hasta el siguiente click, usa toggle:
+            // this.classList.toggle('activado');
+
+            const bloqueKiara = document.getElementById('bloqueKiara');
+
+            bloqueKiara.addEventListener('click', function (e) {
+                e.stopPropagation();
+                // toggle hace que con un toque empiece y con otro se detenga
+                this.classList.toggle('activado');
+            });
+        });
+    </script>
+
+    <script>
+        // Este código detecta cuando las fotos y todo el HTML terminaron de cargar
+        window.addEventListener("load", function () {
+            const loader = document.getElementById("loader-especial-perros");
+
+            // Le damos un pequeño delay extra de 800ms para que se aprecie el GIF
+            setTimeout(() => {
+                loader.classList.add("loader-perros-hidden");
+            }, 800);
+        });
+    </script>
+
+
+</body>
+
+</html>

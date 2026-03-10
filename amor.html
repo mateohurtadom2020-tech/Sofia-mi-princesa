@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi niña...</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Pacifico&family=Great+Vibes&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            background-image: url('../Imagenes/snoopy-flowers.jpg');
+            background-position: center bottom;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            /* Para que los corazones no creen barras de scroll */
+        }
+
+        .contenedor-mensaje {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            padding: 30px;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            text-align: center;
+            position: relative;
+
+            /* --- AQUÍ SUBIMOS EL CUADRO --- */
+            margin-top: -230px;
+
+            /* --- ANIMACIÓN DE REVELADO --- */
+            width: 0;
+            opacity: 0;
+            overflow: hidden;
+            white-space: normal;
+            /* Para que el texto no se amontone mientras crece */
+            animation: revelar 2.5s ease-out forwards;
+        }
+
+        @keyframes revelar {
+            0% {
+                width: 0;
+                opacity: 0;
+            }
+
+            100% {
+                width: 80%;
+                max-width: 400px;
+                opacity: 1;
+            }
+        }
+
+        h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            margin: 0;
+            color: #132e35;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        p {
+            font-family: 'Pacifico', cursive;
+            font-size: 1.5em;
+            color: #132e35;
+        }
+
+        /* --- CORAZONES FLOTANTES (SIN SVG) --- */
+        .corazon {
+            position: absolute;
+            bottom: -50px;
+            font-size: 1.5rem;
+            animation: flotar 4s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes flotar {
+            0% {
+                width: 0;
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
+
+            100% {
+                width: 90%;
+                max-width: 500px;
+                opacity: 1;
+            }
+        }
+
+        /* Ocultar secciones por defecto */
+        .seccion-contenido {
+            display: none;
+            animation: fade-in 0.8s ease;
+            max-height: 300px;
+        }
+
+        /* Mostrar solo la activa */
+        .seccion-contenido.active {
+            display: block;
+        }
+
+        /* Botones estilo rayado */
+        .btn-tab {
+            background: none;
+            border: none;
+            color: #7bb7ee;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5em;
+            padding: 10px 15px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+            margin: 0 10px
+        }
+
+        /* El efecto de resaltado */
+        .btn-tab::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 0%;
+            /* Empieza invisible */
+            height: 8px;
+            /* El grosor de la raya */
+            background-color: rgba(123, 183, 255, 0.5);
+            /* Para darle transparencia */
+            z-index: -1;
+            transition: width 0.4s ease;
+        }
+
+        /* Animacion al pasar el mouse o estar activo */
+        .btn-tab.active::after,
+        .btn-tab:hover::after {
+            width: 100%;
+        }
+
+        .btn-tab.active {
+            color: #DFECFF;
+            text-shadow: 0px 0px 8px rgba(123, 183, 255, 0.8);
+        }
+
+        .btn-magico {
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .btn-magico {
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .btn-magico:hover,
+        .btn-magico:active {
+            transform: translateX(-50%) scale(1.1);
+            /* Mantiene el centrado y agranda */
+            filter: brightness(1.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="loader-wrapper" style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fce4ec; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100000; 
+    transition: opacity 0.6s ease, visibility 0.6s;
+">
+        <div style="font-size: 60px; animation: latido-suave 1.5s infinite;">❤️</div>
+        <p style="
+        font-family: 'Quicksand', sans-serif;
+        color: #d14d4d;
+        margin-top: 20px;
+        font-weight: bold;
+        letter-spacing: 1px;
+    ">Preparando algo para Sofi...</p>
+    </div>
+
+    <style>
+        @keyframes latido-suave {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .loader-hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+    </style>
+
+
+    <div class="contenedor-mensaje">
+        <div class="nav-tabs">
+            <button onclick="cambiarSeccion('inicio')" class="btn-tab active">Inicio</button>
+            <button onclick="cambiarSeccion('por-que-te-amo')" class="btn-tab">¿Por qué?</button>
+            <button onclick="cambiarSeccion('nuestra-relacion')" class="btn-tab">¿Que siento? 💝</button>
+        </div>
+
+        <div id="inicio" class="seccion-contenido active">
+            <h2>Hola, mi vida linda 💞</h2>
+            <p>Te amo con todo mi corazón</p>
+        </div>
+
+        <div id="por-que-te-amo" class="seccion-contenido">
+            <h2>Te amo porque...</h2>
+            <p>Por que siempre estas para mi</p>
+        </div>
+
+        <div id="nuestra-relacion" class="seccion-contenido">
+            <h2>Aveces...</h2>
+            <p>Siento ansias por verte y abrazarte.</p>
+        </div>
+
+        <div class="corazon" style="left: 10%; animation-delay: 0s;">❤️</div>
+        <div class="corazon" style="left: 30%; animation-delay: 2s;">💖</div>
+        <div class="corazon" style="left: 70%; animation-delay: 1s;">💗</div>
+        <div class="corazon" style="left: 90%; animation-delay: 3s;">❤️</div>
+    </div>
+
+    <audio autoplay loop>
+        <source src="Musica/photograph.m4a" type="audio/mp4">
+    </audio>
+
+    <a href="confesion.html" class="btn-magico" style="
+    position: absolute;
+    bottom: 120px; /* Lo ponemos un poco más arriba que el otro botón */
+    left: 50%;
+    transform: translateX(-50%);
+    text-decoration: none;
+    background-color: #44666e; /* Un color diferente para que resalte */
+    color: white;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+    box-shadow: 0 10px 20px rgba(68, 102, 110, 0.3);
+    transition: 0.3s;
+    z-index: 9999;
+    white-space: nowrap;
+">
+        Lo que no te dije ese dia...🌹
+    </a>
+
+    <a href="tercer.html" class="btn-magico" style="
+    position: absolute;
+    bottom: 60px; /* Distancia desde abajo */
+    left: 50%;
+    transform: translateX(-50%); /* Esto lo centra perfecto */
+    text-decoration: none;
+    background-color: #ff4d4d;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    font-size: 1.1rem;
+    box-shadow: 0 10px 20px rgba(255, 77, 77, 0.4);
+    transition: 0.3s;
+    z-index: 9999;
+    white-space: nowrap; /* Evita que el texto se amontone */
+">
+        Ver algo especial... ✨
+    </a>
+
+    <script>
+        function cambiarSeccion(idSeccion) {
+            // Ocultar todas las secciones
+            document.querySelectorAll('.seccion-contenido').forEach(sec => sec.classList.remove('active'));
+            // Quitar active de botones
+            document.querySelectorAll('.btn-tab').forEach(btn => btn.classList.remove('active'));
+            // Mostrar la seleccionada
+            document.getElementById(idSeccion).classList.add('active');
+            // Activar botón actual
+            event.currentTarget.classList.add('active');
+        }
+
+        // Este código quita la pantalla de carga cuando el navegador termina de leer todo
+        window.addEventListener("load", function () {
+            const loader = document.getElementById("loader-wrapper");
+            // Un pequeño delay extra para que no sea un parpadeo brusco
+            setTimeout(() => {
+                loader.classList.add("loader-hidden");
+            }, 600);
+        });
+    </script>
+
+</body>
+
+</html>

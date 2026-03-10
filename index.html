@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Para mi niña 💓</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="CSS/sofia.css">
+</head>
+
+<body>
+
+    <div id="loader-wrapper" style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fce4ec; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100000; 
+    transition: opacity 0.6s ease, visibility 0.6s;
+">
+        <div style="font-size: 60px; animation: latido-suave 1.5s infinite;">❤️</div>
+        <p style="
+        font-family: 'Quicksand', sans-serif;
+        color: #d14d4d;
+        margin-top: 20px;
+        font-weight: bold;
+        letter-spacing: 1px;
+    ">Preparando algo para Sofi...</p>
+    </div>
+
+    <style>
+        @keyframes latido-suave {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .loader-hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+    </style>
+
+
+    <div id="hojas-container"></div>
+
+    <main class="regalo-container">
+        <div class="tarjeta-mensaje" id="miTarjeta">
+            <div class="gojo-header">
+                <img src="Imagenes/mini-gojo.png" alt="Gojo" class="sticker-gojo">
+                <img src="Imagenes/satoru-gojo.png" class="satoru-sticker" id="gojoRevelado">
+            </div>
+
+            <div class="content">
+                <h1 class="titulo">Para la niña más especial...</h1>
+                <p class="mensaje">
+                    Mi amor, Sofia. ¿Que cosas no daria para tenerte a mi lado? tus ojitos me hipnotizan cada vez que
+                    los veo. Cada dia me pregunto: ¿Como estara Sofia? Y me imagino tu cara a la perfeccion.
+                </p>
+            </div>
+        </div>
+
+        <div class="menu-inferior">
+            <a href="amor.html" class="boton-regalo">Siguiente ❓</a>
+            <a href="kiara.html" class="boton-regalo">Un recuerdo de Kiara 🐾</a>
+
+            <a href="bonny.html" class="boton-regalo" style="background-color: #445E1C; color: #F3D0B3;">
+                Recuerdo de Bonny
+            </a>
+        </div>
+    </main>
+
+    <script>
+        const tarjeta = document.getElementById('miTarjeta');
+
+        // Revelar con Click/Toque
+        tarjeta.addEventListener('click', () => {
+            tarjeta.classList.toggle('revelado');
+        });
+
+        // Revelar con Barra Espaciadora (PC)
+        window.addEventListener('keydown', (e) => {
+            if (e.code === "Space") {
+                e.preventDefault();
+                tarjeta.classList.toggle('revelado');
+            }
+        });
+
+        // Este código quita la pantalla de carga cuando el navegador termina de leer todo
+        window.addEventListener("load", function () {
+            const loader = document.getElementById("loader-wrapper");
+            // Un pequeño delay extra para que no sea un parpadeo brusco
+            setTimeout(() => {
+                loader.classList.add("loader-hidden");
+            }, 600);
+        });
+
+    </script>
+</body>
+
+</html>

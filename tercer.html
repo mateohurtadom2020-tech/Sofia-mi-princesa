@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Sofía ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@500&display=swap"
+        rel="stylesheet">
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            font-family: 'Quicksand', sans-serif;
+            scroll-behavior: smooth;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        section {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            /* ESTO ES LO QUE ARREGLA EL FONDO */
+            background-size: cover;
+            /* Obliga a la imagen a llenar todo el espacio */
+            background-position: center;
+            /* La centra para que no se mueva */
+            background-repeat: no-repeat;
+            position: relative;
+            overflow: hidden;
+            /* Corta cualquier cosa que intente asomarse */
+        }
+
+        .tarjeta-juego {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            padding: 25px;
+            border-radius: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 85%;
+            max-width: 380px;
+            position: relative;
+        }
+
+        .imagen-redonda,
+        .imagen-grande {
+            width: 220px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 40px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 50px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.3s;
+            z-index: 10;
+        }
+
+        .btn-si {
+            background: #ff4d4d;
+            color: white;
+        }
+
+        .btn-no {
+            background: #eee;
+            color: #333;
+        }
+
+        /* Estilos de las cartas de Videl */
+        .mazo-cartas {
+            position: relative;
+            height: 200px;
+            width: 280px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .carta-videl {
+            position: absolute;
+            width: 100px;
+            height: 150px;
+            background: white;
+            padding: 5px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            transform: scale(0.5) translateY(50px);
+        }
+
+        .carta-videl img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .lanzada.c1 {
+            opacity: 1;
+            transform: translateX(-80px) rotate(-15deg);
+        }
+
+        .lanzada.c2 {
+            opacity: 1;
+            transform: translateX(0) rotate(0deg);
+            z-index: 2;
+        }
+
+        .lanzada.c3 {
+            opacity: 1;
+            transform: translateX(80px) rotate(15deg);
+        }
+
+        .pregunta {
+            font-family: 'Dancing Script';
+            font-size: 2rem;
+            color: white;
+            margin: 15px 0;
+        }
+
+        #reloj {
+            font-family: 'Dancing Script';
+            font-size: 2.8rem;
+            color: #44666e;
+            margin: 5px 0;
+        }
+
+        .snoopy-vuelo {
+            width: 220px;
+            cursor: pointer;
+            animation: flotar 3s infinite ease-in-out;
+        }
+
+        @keyframes flotar {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(-1deg);
+            }
+
+            50% {
+                transform: translateY(-15px) rotate(1deg);
+            }
+        }
+
+        #texto-carta {
+            line-height: 1.6;
+            letter-spacing: 0.5px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="loader-wrapper" style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fce4ec; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100000; 
+    transition: opacity 0.6s ease, visibility 0.6s;
+">
+        <div style="font-size: 60px; animation: latido-suave 1.5s infinite;">❤️</div>
+        <p style="
+        font-family: 'Quicksand', sans-serif;
+        color: #d14d4d;
+        margin-top: 20px;
+        font-weight: bold;
+        letter-spacing: 1px;
+    ">Preparando algo para Sofi...</p>
+    </div>
+
+    <style>
+        @keyframes latido-suave {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .loader-hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+    </style>
+
+    <section id="sec-1" style="background-image: url('../Imagenes/fondo-arrugado-corazones.jpg');">
+        <img src="../Imagenes/snoopy-with-heart.png" class="snoopy-vuelo" onclick="avanzar('sec-2')">
+        <h2 style="font-family:'Dancing Script'; color:#d14d4d; font-size: 2rem;">Toca a Snoopy...</h2>
+    </section>
+
+    <section id="sec-2" style="background-image: url('../Imagenes/gatos-fondo.jpg');">
+        <div class="tarjeta-juego" style="background: rgba(0,0,0,0.5);">
+            <h2 style="color: white; margin: 0; font-size: 1.5rem;">Llevamos juntos:</h2>
+
+            <div id="reloj">Calculando...</div>
+
+            <img src="../Gifs/Cat-kissing.gif" style="width:90px; margin-top:10px; cursor:pointer;"
+                onclick="avanzar('sec-besos')">
+
+            <div id="frase-meses"
+                style="font-family: 'Dancing Script'; font-size: 1.8rem; color: #44666e; margin-top: 5px;"></div>
+        </div>
+    </section>
+
+    <section id="sec-besos" style="background-image: url('../Imagenes/difuminado-azul.jpg');">
+        <div class="tarjeta-juego">
+            <img src="../Imagenes/please.jpg" class="imagen-redonda">
+            <h2 class="pregunta">¿Me darás besitos cuando me veas? 🥺</h2>
+            <div class="contenedor-botones" id="caja-besos" style="display:flex; gap:20px; transition:0.4s;">
+                <button class="btn btn-si" onclick="avanzar('sec-mano')">Obvio jsjs</button>
+                <button class="btn btn-no" onmouseover="intercambiar()">¡Ew! No</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="sec-mano" style="background-image: url('../Imagenes/difuminado-azul-blanco.jpg');">
+        <div class="tarjeta-juego">
+            <img src="../Imagenes/dog.jpg" class="imagen-redonda">
+            <h2 class="pregunta">¿Me dejarás tomarte la mano?</h2>
+            <div style="display:flex; gap:20px;">
+                <button class="btn btn-si" id="btn-si-mano" onclick="avanzar('sec-abrazo')">¡Si!</button>
+                <button class="btn btn-no" onclick="crecerSi()">No...</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="sec-abrazo" style="background-image: url('../Imagenes/blue-flowers.jpg');">
+        <img src="../Gifs/Abrazo.gif" class="imagen-grande">
+        <h2 class="pregunta">¡Sabía que sí! ❤️</h2>
+        <button class="btn btn-si" onclick="avanzar('sec-videl')">Siguiente...</button>
+    </section>
+
+    <section id="sec-videl" style="background-image: url('../Imagenes/jean-modelo.jpg');">
+        <div class="tarjeta-juego">
+            <h2 id="titulo-videl" class="pregunta">Me recuerdas mucho a...</h2>
+
+            <div class="mazo-cartas">
+                <div class="carta-videl c1"><img src="../Imagenes/videl.jpg"></div>
+                <div class="carta-videl c2"><img src="../Imagenes/videl-dbz.jpg"></div>
+                <div class="carta-videl c3"><img src="../Imagenes/videl-dbs.jpg"></div>
+            </div>
+
+            <button id="btn-quien" class="btn btn-si" onclick="lanzarCartas()">¿A quién? 🤔</button>
+
+            <div id="control-sig" style="display:none; margin-top: 15px; width: 100%;">
+                <p style="color: white; font-size: 1.1rem; margin-bottom: 15px;">Por tu valentía, tu fuerza y tu gran
+                    corazón. 💖</p>
+                <button class="btn btn-si" onclick="avanzarACarta()">Leer carta ✍️</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="sec-carta" style="background-image: url('../Imagenes/carta-fondo.jpg');">
+        <div class="tarjeta-juego" style="background: rgba(255, 255, 255, 0.85); min-height: 250px; color: #333;">
+            <div id="texto-carta" style="font-family:'Dancing Script'; font-size:1.7rem; text-align:left; width: 100%;">
+            </div>
+            <button id="btn-final" class="btn btn-si" style="display:none; margin-top:20px;"
+                onclick="liberarTodo()">Explorar página ❤️</button>
+        </div>
+    </section>
+
+    <script>
+        function avanzar(id) {
+            document.body.style.overflowY = "auto";
+            const target = document.getElementById(id);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            setTimeout(() => { document.body.style.overflowY = "hidden"; }, 1000);
+        }
+
+        function intercambiar() {
+            const caja = document.getElementById('caja-besos');
+            caja.style.flexDirection = (caja.style.flexDirection === "row-reverse") ? "row" : "row-reverse";
+        }
+
+        let escala = 1;
+        function crecerSi() {
+            escala += 0.4;
+            document.getElementById('btn-si-mano').style.transform = `scale(${escala})`;
+        }
+
+        function lanzarCartas() {
+            document.getElementById('btn-quien').style.display = 'none';
+            document.getElementById('titulo-videl').innerHTML = "¡A Videl! ✨";
+            const cartas = document.querySelectorAll('.carta-videl');
+            cartas.forEach((c, i) => setTimeout(() => c.classList.add('lanzada'), i * 200));
+            setTimeout(() => { document.getElementById('control-sig').style.display = 'block'; }, 1000);
+        }
+
+        function avanzarACarta() {
+            avanzar('sec-carta');
+            setTimeout(escribirCarta, 1200);
+        }
+
+        const mensaje = "Sofi, queria decirte lo mucho que me importas, eres tan increible que no puedo describirtelo con simples palabras, cada detalle... Cada imperfeccion  tuya me enamora cada dia mas y mas, tus ojos colo cafe... Los veo hasta en mis sueños, cada Te amo que me dices, lo llevo guardado en mi memoria, este regalo no es por San Valentin solamente... Es para demostrarte mi cariño entero. Gracias Sofia, Te amo 💖";
+
+        let idx = 0;
+        function escribirCarta() {
+            if (idx < mensaje.length) {
+                document.getElementById("texto-carta").innerHTML += mensaje.charAt(idx);
+                idx++;
+                setTimeout(escribirCarta, 45);
+            } else {
+                document.getElementById("btn-final").style.display = "block";
+            }
+        }
+
+        function liberarTodo() {
+            document.body.style.overflowY = "scroll";
+            document.documentElement.style.overflowY = "scroll";
+            alert("¡Ya puedes ver toda la página libremente! ❤️");
+        }
+
+        // FECHA DE INICIO: 21 de Agosto de 2025 (Mes 7 en JS)
+        const fechaInicio = new Date(2025, 7, 21, 11, 50, 0);
+
+        function actualizarTodo() {
+            const ahora = new Date();
+            const diff = ahora - fechaInicio;
+
+            // Días totales para el reloj superior
+            const dTotal = Math.floor(diff / 864e5);
+            const h = Math.floor((diff % 864e5) / 36e5);
+            const m = Math.floor((diff % 36e5) / 6e4);
+            const s = Math.floor((diff % 6e4) / 1e3);
+
+            document.getElementById("reloj").innerHTML = `${dTotal}d ${h}h ${m}m ${s}s`;
+
+            // LÓGICA DE MESES Y DÍAS (Exacta para el 9 de marzo)
+            let meses = (ahora.getFullYear() - fechaInicio.getFullYear()) * 12;
+            meses += ahora.getMonth() - fechaInicio.getMonth();
+            let dias = ahora.getDate() - fechaInicio.getDate();
+
+            if (dias < 0) {
+                meses--;
+                // Calcula los días restantes del mes anterior
+                const ultimoDiaMesAnterior = new Date(ahora.getFullYear(), ahora.getMonth(), 0).getDate();
+                dias += ultimoDiaMesAnterior;
+            }
+
+            const frase = document.getElementById("frase-meses");
+            if (frase) frase.innerHTML = `${meses} meses con ${dias} días 💗`;
+        }
+
+        setInterval(actualizarTodo, 1000);
+        actualizarTodo();
+
+        // Este código quita la pantalla de carga cuando el navegador termina de leer todo
+        window.addEventListener("load", function () {
+            const loader = document.getElementById("loader-wrapper");
+            // Un pequeño delay extra para que no sea un parpadeo brusco
+            setTimeout(() => {
+                loader.classList.add("loader-hidden");
+            }, 600);
+        });
+        
+    </script>
+</body>
+
+</html>
