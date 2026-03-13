@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Para mi niña 💓</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="CSS/sofia.css">
+
+    <link rel="icon" type="image/png" href="Imagenes/ball-kirby.png">
+
+    <link rel="apple-touch-icon" href="Imagenes/ball-kirby.png">
+</head>
+
+<body>
+
+    <div id="loader-wrapper" style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fce4ec; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100000; 
+    transition: opacity 0.6s ease, visibility 0.6s;
+">
+        <div style="font-size: 60px; animation: latido-suave 1.5s infinite;">❤️</div>
+        <p style="
+        font-family: 'Quicksand', sans-serif;
+        color: #d14d4d;
+        margin-top: 20px;
+        font-weight: bold;
+        letter-spacing: 1px;
+    ">Preparando algo para Sofi...</p>
+    </div>
+
+    <style>
+        @keyframes latido-suave {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .loader-hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+    </style>
+
+
+    <div id="hojas-container"></div>
+
+    <main class="regalo-container">
+        <div class="tarjeta-mensaje" id="miTarjeta">
+            <div class="gojo-header">
+                <img src="Imagenes/mini-gojo.png" alt="Gojo" class="sticker-gojo">
+                <img src="Imagenes/satoru-gojo.png" class="satoru-sticker" id="gojoRevelado">
+            </div>
+
+            <div class="content">
+                <h1 class="titulo">Para la niña más especial...</h1>
+                <p class="mensaje">
+                    Mi amor, Sofia. ¿Que cosas no daria para tenerte a mi lado? tus ojitos me hipnotizan cada vez que
+                    los veo. Cada dia me pregunto: ¿Como estara Sofia? Y me imagino tu cara a la perfeccion.
+                </p>
+            </div>
+        </div>
+
+        <div class="menu-inferior">
+            <a href="amor.html" class="boton-regalo">Siguiente ❓</a>
+            <a href="kiara.html" class="boton-regalo">Un recuerdo de Kiara 🐾</a>
+
+            <a href="bonny.html" class="boton-regalo" style="background-color: #445E1C; color: #F3D0B3;">
+                Recuerdo de Bonny
+            </a>
+        </div>
+    </main>
+
+    <script>
+        const tarjeta = document.getElementById('miTarjeta');
+
+        // Revelar con Click/Toque
+        tarjeta.addEventListener('click', () => {
+            tarjeta.classList.toggle('revelado');
+        });
+
+        // Revelar con Barra Espaciadora (PC)
+        window.addEventListener('keydown', (e) => {
+            if (e.code === "Space") {
+                e.preventDefault();
+                tarjeta.classList.toggle('revelado');
+            }
+        });
+
+        // Este código quita la pantalla de carga cuando el navegador termina de leer todo
+        window.addEventListener("load", function () {
+            const loader = document.getElementById("loader-wrapper");
+            // Un pequeño delay extra para que no sea un parpadeo brusco
+            setTimeout(() => {
+                loader.classList.add("loader-hidden");
+            }, 600);
+        });
+
+    </script>
+
+    <!-- /* PARTE DE "logs" */-->
+
+    <style>
+        /* El panel de vidrio esmerilado */
+        #panel-logs {
+            display: none;
+            /* Se activa al cargar con el script */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            /* EFECTO VIDRIO TEMPLADO */
+            background: rgba(255, 255, 255, 0.15);
+            /* Fondo muy translúcido */
+            backdrop-filter: blur(15px);
+            /* El desenfoque del vidrio */
+            -webkit-backdrop-filter: blur(15px);
+
+            padding: 30px;
+            border-radius: 30px;
+            width: 85%;
+            max-width: 380px;
+            text-align: center;
+            z-index: 10002;
+
+            /* Borde brillante para efecto cristal */
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        /* Título del Registro */
+        .log-header {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 0.9em;
+            font-weight: bold;
+            color: #ffffff;
+            /* Letras blancas para que resalten sobre el verde */
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            display: block;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Lista de actualizaciones */
+        .lista-mejoras {
+            text-align: left;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 0.85em;
+            color: #142905;
+            line-height: 1.8;
+        }
+
+        .lista-mejoras li {
+            margin-bottom: 8px;
+            padding-left: 5px;
+            border-left: 2px solid #ff69b4;
+            /* Una línea rosa al lado de cada cambio */
+        }
+
+        /* Botón para entrar a la página */
+        #btn-acceso {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #4b6321;
+            /* Verde oscuro para contrastar */
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 25px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        #btn-acceso:hover {
+            background-color: #ff69b4;
+            color: white;
+            transform: scale(1.05);
+        }
+    </style>
+
+    <div id="panel-logs">
+        <span class="log-header">SISTEMA ACTUALIZADO</span>
+
+        <ul class="lista-mejoras">
+            <li>✨ ¡Kirby de Icono!.</li>
+            <li>✨ Botón de mini cartita.</li>
+            <li>✨ Fecha de Actualizacion: 13 de Marzo.</li>
+            <li>✨ Registro de actividad [v1.0] desplegado.</li>
+        </ul>
+
+        <button id="btn-acceso" onclick="cerrarPanel()">Acceder al Sitio ❤️</button>
+    </div>
+
+    <script>
+        // Mostrar el panel de vidrio al entrar
+        window.onload = function () {
+            document.getElementById('panel-logs').style.display = 'block';
+        };
+
+        // Función para cerrar el panel y dejar ver el index
+        function cerrarPanel() {
+            document.getElementById('panel-logs').style.display = 'none';
+        }
+
+        // Si quieres que el botón rosa de la esquina vuelva a abrir ESTE panel:
+        function mostrarMensaje() {
+            document.getElementById('panel-logs').style.display = 'block';
+        }
+    </script>
+
+</body>
+
+</html>
