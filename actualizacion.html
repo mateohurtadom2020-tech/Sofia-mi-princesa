@@ -1,157 +1,122 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Para mi niña 💓</title>
-    <link rel="icon" type="image/png" href="Imagenes/ball-kirby.png">
-    <link rel="apple-touch-icon" href="Imagenes/ball-kirby.png">
+    
+    <link rel="icon" type="image/png" href="Imagenes/ball-kirby.png?v=3">
+    <link rel="apple-touch-icon" href="Imagenes/ball-kirby.png?v=3">
+
     <style>
-        body,
-        html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
+        body, html {
+            margin: 0; padding: 0;
+            height: 100%; width: 100%;
             overflow: hidden;
-            /* Evita barras de desplazamiento dobles */
+            background-color: #fce4ec;
+            font-family: 'Quicksand', sans-serif;
         }
 
+        /* El marco que contiene el sitio */
         #contenedor-principal {
             width: 100%;
             height: 100%;
             border: none;
+            display: block;
         }
 
-        /* Estilos para el Botón Flotante */
-        #boton-secreto {
+        /* EL BOTÓN INDIVIDUAL (FLOTANTE) */
+        #btn-flotante-mensaje {
             position: fixed;
-            bottom: 20px;
-            /* Distancia desde abajo */
-            right: 20px;
-            /* Distancia desde la derecha */
+            bottom: 25px; /* Separado del borde inferior */
+            right: 25px;  /* Separado del borde derecho */
+            width: 60px;
+            height: 60px;
             background-color: #ff69b4;
-            /* Un rosa bonito, o el color que prefieras */
             color: white;
-            border: none;
-            padding: 15px 20px;
-            border-radius: 50px;
-            /* Bordes redondeados */
+            border: 3px solid white; /* Borde para que resalte como los otros */
+            border-radius: 50%; /* Lo hace un círculo perfecto */
+            font-size: 28px;
             cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            /* Sombra para que flote */
-            z-index: 1000;
-            /* Asegura que esté por encima de todo */
-            font-family: Arial, sans-serif;
-            font-weight: bold;
-            transition: transform 0.3s;
-            /* Efecto al pasar el mouse */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        #boton-secreto:hover {
-            transform: scale(1.1);
-            /* Se hace un poquito más grande */
+        #btn-flotante-mensaje:active {
+            transform: scale(0.9); /* Efecto de click */
         }
 
-        /* Estilos para la Ventana del Mensaje (Modal) */
-        /* Ventana del Mensaje (La Cartita) */
-        #ventana-mensaje {
+        /* Ventana Emergente (Modal) */
+        #modal-cartita {
             display: none;
             position: fixed;
-            top: 50%;
-            left: 50%;
+            top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            background-color: #fff9f0;
-            /* Un color crema/vainilla muy suave */
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-            z-index: 1001;
             width: 85%;
-            max-width: 450px;
+            max-width: 350px;
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            z-index: 1000000;
             text-align: center;
-            border: 2px solid #ffb7c5;
-            /* Un borde sutil rosa */
         }
 
-        #ventana-mensaje p {
-            font-family: 'Georgia', serif;
-            /* Una letra más elegante y clásica */
-            font-size: 1.15em;
+        #modal-cartita p {
             color: #4a3b33;
-            /* Un café oscuro para que no sea tan rudo como el negro */
-            line-height: 1.6;
+            line-height: 1.5;
             font-style: italic;
+            margin-bottom: 20px;
         }
 
-        #cerrar-mensaje {
-            background-color: #333;
+        #btn-cerrar {
+            background: #333;
             color: white;
             border: none;
             padding: 10px 20px;
-            border-radius: 5px;
+            border-radius: 10px;
             cursor: pointer;
-            margin-top: 20px;
         }
     </style>
 </head>
-
 <body>
 
-    <iframe src="index.html" id="contenedor-principal" name="contenido"></iframe>
+    <iframe src="index.html" id="contenedor-principal"></iframe>
 
-    <button id="boton-secreto" onclick="mostrarMensaje()">❤️ Un Mensaje para Ti</button>
+    <button id="btn-flotante-mensaje" onclick="abrirCarta()" title="Mensaje secreto">
+        💌
+    </button>
 
-    <div id="ventana-mensaje">
+    <div id="modal-cartita">
         <p>
-            Hola Sofi, quería decirte que te extraño un montoon, aveces por las noches, chillo por que me haces
-            demasiada falta ademas de que tengo dias pesados aveces... Llenos de tareas, ¡Pero aun no pierdo la fe! Se
-            que un dia estaremos juntos tooodo el dia, te quiero, te amo, te aprecio, te necesitoo, ¿Sabes? Eres la niña
-            mas bella que han visto mis ojos.
+            Hola Sofi, quería decirte que te extraño un montoon... ¡Pero aun no pierdo la fe! Se que un día estaremos juntos todo el día. Quiero informarte que el proximo sabado (21 de este mes) ¡ES NUESTRO ANIVERSARIO! 7 meses  especificamente. Eres la niña más bella que han visto mis ojos.
         </p>
-        <button id="cerrar-mensaje" onclick="cerrarMensaje()">Cerrar</button>
+        <button id="btn-cerrar" onclick="cerrarCarta()">Cerrar</button>
     </div>
 
     <script>
-        function mostrarMensaje() {
-            document.getElementById('ventana-mensaje').style.display = 'block';
+        function abrirCarta() {
+            document.getElementById('modal-cartita').style.display = 'block';
         }
-        function cerrarMensaje() {
-            document.getElementById('ventana-mensaje').style.display = 'none';
+        function cerrarCarta() {
+            document.getElementById('modal-cartita').style.display = 'none';
         }
 
-        const iframe = document.getElementById('contenedor-principal');
-
-        function actualizarTitulo() {
+        // Sincronizador de Títulos (Para que cambie con Kiara y Bonny)
+        const frame = document.getElementById('contenedor-principal');
+        setInterval(() => {
             try {
-                // Si el iframe tiene un título (como "La consentida Kiara"), 
-                // lo ponemos en la pestaña principal.
-                if (iframe.contentDocument && iframe.contentDocument.title) {
-                    document.title = iframe.contentDocument.title;
+                if (frame.contentDocument && frame.contentDocument.title) {
+                    if (document.title !== frame.contentDocument.title) {
+                        document.title = frame.contentDocument.title;
+                    }
                 }
-            } catch (e) {
-                // Si hay error o está cargando, dejamos el nombre oficial
-                document.title = "Para mi niña 💓";
-            }
-        }
-
-        // Revisa el título cada vez que cambie la página dentro del marco
-        iframe.onload = actualizarTitulo;
-        // Y por si acaso, revisa cada segundo
-        setInterval(actualizarTitulo, 1000);
-
-        setInterval(forzarTitulo, 500);
-
-        // Funciones de la cartita
-        function mostrarMensaje() {
-            document.getElementById('ventana-mensaje').style.display = 'block';
-        }
-        function cerrarMensaje() {
-            document.getElementById('ventana-mensaje').style.display = 'none';
-        }
+            } catch (e) {}
+        }, 1000);
     </script>
-
 </body>
-
-
 </html>
