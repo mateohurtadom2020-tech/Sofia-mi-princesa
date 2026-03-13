@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Para mi niña 💓</title>
+    <link rel="icon" type="image/png" href="Imagenes/ball-kirby.png?v=1">
+    <link rel="apple-touch-icon" href="Imagenes/ball-kirby.png?v=1">
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            /* Evita barras de desplazamiento dobles */
+        }
+
+        #contenedor-principal {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Estilos para el Botón Flotante */
+        #boton-secreto {
+            position: fixed;
+            bottom: 20px;
+            /* Distancia desde abajo */
+            right: 20px;
+            /* Distancia desde la derecha */
+            background-color: #ff69b4;
+            /* Un rosa bonito, o el color que prefieras */
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 50px;
+            /* Bordes redondeados */
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Sombra para que flote */
+            z-index: 1000;
+            /* Asegura que esté por encima de todo */
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            transition: transform 0.3s;
+            /* Efecto al pasar el mouse */
+        }
+
+        #boton-secreto:hover {
+            transform: scale(1.1);
+            /* Se hace un poquito más grande */
+        }
+
+        /* Estilos para la Ventana del Mensaje (Modal) */
+        /* Ventana del Mensaje (La Cartita) */
+        #ventana-mensaje {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff9f0;
+            /* Un color crema/vainilla muy suave */
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            z-index: 1001;
+            width: 85%;
+            max-width: 450px;
+            text-align: center;
+            border: 2px solid #ffb7c5;
+            /* Un borde sutil rosa */
+        }
+
+        #ventana-mensaje p {
+            font-family: 'Georgia', serif;
+            /* Una letra más elegante y clásica */
+            font-size: 1.15em;
+            color: #4a3b33;
+            /* Un café oscuro para que no sea tan rudo como el negro */
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        #cerrar-mensaje {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <iframe src="index.html" id="contenedor-principal" name="contenido"></iframe>
+
+    <button id="boton-secreto" onclick="mostrarMensaje()">❤️ Un Mensaje para Ti</button>
+
+    <div id="ventana-mensaje">
+        <p>
+            Hola Sofi, quería decirte que te extraño un montoon, aveces por las noches, chillo por que me haces
+            demasiada falta ademas de que tengo dias pesados aveces... Llenos de tareas, ¡Pero aun no pierdo la fe! Se
+            que un dia estaremos juntos tooodo el dia, te quiero, te amo, te aprecio, te necesitoo, ¿Sabes? Eres la niña
+            mas bella que han visto mis ojos.
+        </p>
+        <button id="cerrar-mensaje" onclick="cerrarMensaje()">Cerrar</button>
+    </div>
+
+    <script>
+        function mostrarMensaje() {
+            document.getElementById('ventana-mensaje').style.display = 'block';
+        }
+        function cerrarMensaje() {
+            document.getElementById('ventana-mensaje').style.display = 'none';
+        }
+
+        const iframe = document.getElementById('contenedor-principal');
+
+        function actualizarTitulo() {
+            try {
+                // Si el iframe tiene un título (como "La consentida Kiara"), 
+                // lo ponemos en la pestaña principal.
+                if (iframe.contentDocument && iframe.contentDocument.title) {
+                    document.title = iframe.contentDocument.title;
+                }
+            } catch (e) {
+                // Si hay error o está cargando, dejamos el nombre oficial
+                document.title = "Para mi niña 💓";
+            }
+        }
+
+        // Revisa el título cada vez que cambie la página dentro del marco
+        iframe.onload = actualizarTitulo;
+        // Y por si acaso, revisa cada segundo
+        setInterval(actualizarTitulo, 1000);
+
+        setInterval(forzarTitulo, 500);
+
+        // Funciones de la cartita
+        function mostrarMensaje() {
+            document.getElementById('ventana-mensaje').style.display = 'block';
+        }
+        function cerrarMensaje() {
+            document.getElementById('ventana-mensaje').style.display = 'none';
+        }
+    </script>
+
+</body>
+
+</html>
