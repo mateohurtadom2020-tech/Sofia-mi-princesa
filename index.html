@@ -165,7 +165,10 @@
                 <h1 class="titulo">Para la niña más especial...</h1>
                 <p class="mensaje">
                     Mi amor, Sofia. ¿Que cosas no daria para tenerte a mi lado? tus ojitos me hipnotizan cada vez que
-                    los veo. Cada dia me pregunto: ¿Como estara Sofia? Y me imagino tu cara a la perfeccion.
+                    los veo. Cada dia me pregunto: ¿Como estara Sofia? Y me imagino tu cara a la perfeccion. ¿Sabes? ¡Me
+                    haces el
+                    <span class="enlace-secreto" onclick="window.location.href='vestido.html'">niño</span> mas feliz del
+                    mundo!.
                 </p>
             </div>
         </div>
@@ -352,17 +355,49 @@
         #btn-flotante-mensaje {
             animation: palpitacion 2s infinite ease-in-out !important;
         }
+
+        .enlace-secreto {
+            color: #FFFEEC !important;
+            /* Color Ivory */
+            font-weight: bold !important;
+            cursor: pointer !important;
+            display: inline-block !important;
+            /* CRÍTICO: Si no, no brilla ni se mueve */
+            text-decoration: none !important;
+            position: relative;
+            z-index: 999;
+
+            /* Brillo inicial fuerte */
+            text-shadow: 0 0 10px rgba(255, 254, 236, 0.9),
+                0 0 20px rgba(255, 254, 236, 0.4) !important;
+
+            animation: palpitarBrillo 1.2s infinite alternate !important;
+        }
+
+        @keyframes palpitarBrillo {
+            from {
+                text-shadow: 0 0 10px rgba(255, 254, 236, 0.8);
+                transform: scale(1);
+            }
+
+            to {
+                text-shadow: 0 0 25px rgba(255, 254, 236, 1),
+                    0 0 35px rgba(203, 216, 59, 0.7);
+                transform: scale(1.2);
+                /* Se nota más el movimiento */
+            }
+        }
     </style>
 
     <div id="panel-logs">
         <span class="log-header">SISTEMA ACTUALIZADO</span>
 
         <ul class="lista-mejoras">
-            <li>✨ ¡Kirby de Icono!.</li>
-            <li>🌟 Bugs arreglados.</li>
-            <li>✨ Botón de mini cartita.</li>
-            <li>✨ Fecha de Actualizacion: 13 de Marzo.</li>
-            <li>✨ Registro de actividad [v1.1] desplegado.</li>
+            <li>✨ ¡Mini-juego añadido!.</li>
+            <li>🌟 Palabra escondida</li>
+            <li>✨ Mas actualizaciones pronto...</li>
+            <li>✨ Fecha de Actualizacion: 14 de Marzo.</li>
+            <li>✨ Registro de actividad [v1.2] desplegado.</li>
         </ul>
 
         <button id="btn-acceso" onclick="cerrarPanel()">Acceder al Sitio ❤️</button>
