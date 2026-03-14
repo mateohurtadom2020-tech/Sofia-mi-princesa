@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini-juego</title>
+</head>
+
+<body>
+
+    <div id="loader-nota" style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #FFFEEC; /* Fondo Ivory */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    transition: opacity 0.8s ease;">
+
+        <div class="espiral-contenedor">
+            <img src="Pictures/espiral.png" alt="Espiral" class="img-espiral">
+        </div>
+
+        <p style="
+        color: #A88AED; /* Texto Violeta (Indigo) */
+        margin-top: 25px; 
+        font-family: 'Quicksand', sans-serif; 
+        font-weight: bold;
+        letter-spacing: 2px;
+        font-size: 0.9rem;
+    ">PREPARANDO MINI-JUEGO...</p>
+    </div>
+
+    <div class="escena-viento" id="contenedor-principal">
+        <img src="Pictures/pin.png" alt="pin" class="pin">
+
+        <div class="tarjeta-cristal" id="nota-pista">
+            <h1 style="color: var(--pear);">Una petición 🥺</h1>
+            <p>
+                SOFIAA :3 ¿Cómo has estado? Espero que bien. Mira, esta vez no es una nota sentimental...
+                es un pequeño juego.
+            </p>
+
+            <div class="contenedor-password">
+                <label class="pista-texto">Pista: Es una vestimenta y que segun vi que te gustan (Espero no equivocarme
+                    jajaj)</label>
+                <input type="text" id="passwordInput" placeholder="Escribe aquí..." class="input-cristal">
+            </div>
+        </div>
+
+        <div class="tarjeta-cristal" id="nota-secreta" style="display: none; opacity: 0;">
+            <h1 style="color: var(--pear);">¡Lo lograste! ✨</h1>
+            <p>
+                Exactamente esa es mi peticion: Verte usando un vestido, ¿Por que? Mi niña, si te ves hermosa ya de por
+                si, yo quisiera verte con vestido, por que es algo que me dejaria rojo como un tomate.
+            </p>
+        </div>
+    </div>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Quicksand:wght@300;500&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --pear: #CBD83B;
+            --indigo: #A88AED;
+            --ivory: #FFFEEC;
+        }
+
+        /* /* ESTILO DE LA ESPIRAL GIRATORIA */
+        */ .espiral-contenedor {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .img-espiral {
+            width: 100%;
+            height: auto;
+            /* Aquí activamos el giro: 2 segundos por vuelta, infinito y lineal */
+            animation: girarEspiral 2s linear infinite !important;
+        }
+
+        @keyframes girarEspiral {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Quicksand', sans-serif;
+            background: url('Pictures/Lavanda-Background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem;
+            color: var(--pear);
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        p {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 500;
+            color: var(--ivory);
+            line-height: 1.6;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .tarjeta-cristal {
+            background: rgba(168, 138, 237, 0.15);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 254, 236, 0.3);
+            border-radius: 30px;
+            width: 70%;
+            max-width: 276px;
+            margin: auto;
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .escena-viento {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin-top: 72px;
+            animation: brisaSuave 7s ease-in-out infinite alternate;
+            transform-origin: top center;
+        }
+
+        @keyframes brisaSuave {
+            0% {
+                transform: rotate(-0.5deg);
+            }
+
+            100% {
+                transform: rotate(0.5deg);
+            }
+        }
+
+        .pin {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            z-index: 10;
+            filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        /* /* ESTILO DEL CAMPO DE CONTRASEÑA */
+        .contenedor-password {
+            margin-top: 35px;
+            /* Subimos de 20px a 35px para dar espacio */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            /* Más espacio entre la pista y el cuadro */
+        }
+
+        .pista-texto {
+            color: var(--ivory);
+            font-size: 0.85rem;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        .input-cristal {
+            background: rgba(255, 254, 236, 0.2);
+            /* Ivory transparente */
+            border: 1px solid var(--ivory);
+            border-radius: 20px;
+            /* Bordes un poco más circulares */
+            padding: 12px 15px;
+            /* MÁS AIRE: Aumentamos el relleno interno */
+            color: var(--ivory);
+            text-align: center;
+            font-family: 'Quicksand', sans-serif;
+            outline: none;
+            width: 75%;
+            /* MÁS CORTO: Bajamos del 92% al 75% para menos ruido */
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            /* Letra un poco más nítida */
+            margin-bottom: 10px;
+            /* Espacio extra al final de la nota */
+        }
+
+        .input-cristal:focus {
+            background: rgba(255, 254, 236, 0.4);
+            box-shadow: 0 0 10px rgba(255, 254, 236, 0.3);
+        }
+
+        .input-cristal::placeholder {
+            color: rgba(255, 254, 236, 0.6);
+        }
+    </style>
+
+    <script>
+        const input = document.getElementById('passwordInput');
+        const notaPista = document.getElementById('nota-pista');
+        const notaSecreta = document.getElementById('nota-secreta');
+
+        input.addEventListener('input', () => {
+            // Comprobamos si escribió "Vestido" (sin importar mayúsculas)
+            if (input.value.toLowerCase() === 'vestido') {
+
+                // Efecto de desvanecimiento
+                notaPista.style.transition = "opacity 0.8s ease";
+                notaPista.style.opacity = "0";
+
+                setTimeout(() => {
+                    notaPista.style.display = "none";
+                    notaSecreta.style.display = "block";
+
+                    // Aparece la nota secreta suavemente
+                    setTimeout(() => {
+                        notaSecreta.style.transition = "opacity 0.8s ease";
+                        notaSecreta.style.opacity = "1";
+                    }, 50);
+                }, 800);
+            }
+        });
+
+        // --- ESTO QUITA LA PANTALLA DE CARGA ---
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader-nota');
+
+            // Esperamos un segundo y medio para que se vea la espiral
+            setTimeout(() => {
+                loader.style.opacity = '0';
+
+                // Después de que se desvanezca, la eliminamos del mapa
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 800);
+            }, 1500);
+        });
+        
+    </script>
+</body>
+
+</html>
