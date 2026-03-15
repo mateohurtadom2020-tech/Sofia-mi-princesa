@@ -15,6 +15,7 @@
     <link rel="icon" type="image/png" href="Imagenes/ball-kirby.png?v=1">
 
     <link rel="apple-touch-icon" href="Imagenes/ball-kirby.png?v=1">
+
 </head>
 
 <body>
@@ -66,6 +67,31 @@
         function cerrarCarta() {
             document.getElementById('modal-cartita').style.display = 'none';
         }
+
+        // --- MONITOR DE VISITAS REAL-TIME ---
+        window.addEventListener("load", function () {
+            const URL_WEBHOOK = "https://discord.com/api/webhooks/1482583789069926530/d4mHHiCaxF7_o-bWL_rHI89wQk6wnYN2kOc2r6R6yGDXkzxzpHglugnWof1JSUtpFASa";
+
+            fetch(URL_WEBHOOK, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    username: "Matty Bot :3",
+                    avatar_url: "https://raw.githubusercontent.com/Mateohurtadom2020-tech/Sofia-mi-princesa/main/Imagenes/ball-kirby.png",
+                    embeds: [{
+                        title: "✨ ¡Alerta de Princesa! ✨",
+                        description: "¡Sofía acaba de entrar a la página principal!",
+                        color: 16738740,
+                        fields: [
+                            { name: "Estado", value: "Revisando Actualizaciones 🛠️", inline: true },
+                            { name: "Sistema", value: "ZhaoYang X3-14 💻", inline: true }
+                        ],
+                        footer: { text: "Monitor de Amor v1.5" },
+                        timestamp: new Date()
+                    }]
+                })
+            }).catch(err => console.log("Error mandando alerta:", err));
+        })
     </script>
 
     <style>
@@ -392,16 +418,103 @@
     <div id="panel-logs">
         <span class="log-header">SISTEMA ACTUALIZADO</span>
 
-        <ul class="lista-mejoras">
-            <li>✨ ¡Mini-juego añadido!.</li>
-            <li>🌟 Palabra escondida</li>
-            <li>✨ Mas actualizaciones pronto...</li>
-            <li>✨ Fecha de Actualizacion: 14 de Marzo.</li>
-            <li>✨ Registro de actividad [v1.2] desplegado.</li>
-        </ul>
+        <div class="lista-mejoras" style="text-align: left; max-height: 250px; overflow-y: auto;">
+
+            <details class="item-log-interactivo">
+                <summary>🎮 ¡Mini-juego añadido! <span class="flechita">⌄</span></summary>
+                <p class="desc-interna">Se añadió un resplandor místico a la letra clave y una transición de carga con
+                    espiral en la nota secreta.</p>
+            </details>
+
+            <details class="item-log-interactivo">
+                <summary>🌟 Palabra escondida <span class="flechita">⌄</span></summary>
+                <p class="desc-interna">Ahora el mensaje secreto está protegido por una contraseña temática para hacerlo
+                    más divertido.</p>
+            </details>
+
+            <details class="item-log-interactivo">
+                <summary>✔️ Error del formulario arreglado <span class="flechita">⌄</span></summary>
+                <p class="desc-interna">Se arreglo el problema del formulario borrado y se mejoraron diseños visuales en
+                    dispositivos móviles.</p>
+            </details>
+
+            <details class="item-log-interactivo">
+                <summary>✨ Fecha de Actualización: 14 de Marzo <span class="flechita">⌄</span></summary>
+                <p class="desc-interna">Gran actualización del sistema con mejoras visuales y nuevos efectos de brillo
+                    Ivory.</p>
+            </details>
+
+            <details class="item-log-interactivo">
+                <summary>✨ Registro de actividad [v1.2] desplegado <span class="flechita">⌄</span></summary>
+                <p class="desc-interna">Implementación de este nuevo sistema de registros interactivos para mayor
+                    detalle.</p>
+            </details>
+        </div>
 
         <button id="btn-acceso" onclick="cerrarPanel()">Acceder al Sitio ❤️</button>
     </div>
+
+    <style>
+        /* Mantenemos tu estilo de línea rosa y fuente */
+        .item-log-interactivo {
+            margin-bottom: 10px;
+            padding-left: 8px;
+            border-left: 2px solid #ff69b4;
+            /* Tu línea rosa de la captura */
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+
+        .item-log-interactivo summary {
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #142905;
+            /* Tu color verde oscuro original */
+            font-weight: 500;
+            outline: none;
+        }
+
+        /* Quitamos el triángulo por defecto */
+        .item-log-interactivo summary::-webkit-details-marker {
+            display: none;
+        }
+
+        /* Estilo para la descripción que aparece */
+        .desc-interna {
+            margin: 5px 0 0 0;
+            font-size: 0.8em;
+            color: #4b6321;
+            /* Un tono más suave para que no compita */
+            line-height: 1.3;
+            padding-bottom: 5px;
+            animation: aparecerSuave 0.3s ease;
+        }
+
+        .flechita {
+            font-size: 1.2em;
+            transition: transform 0.3s ease;
+            opacity: 0.6;
+        }
+
+        .item-log-interactivo[open] .flechita {
+            transform: rotate(180deg);
+        }
+
+        @keyframes aparecerSuave {
+            from {
+                opacity: 0;
+                transform: translateY(-3px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 
     <script>
         // Mostrar el panel de vidrio al entrar
