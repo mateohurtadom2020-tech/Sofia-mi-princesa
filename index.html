@@ -20,44 +20,32 @@
 
 <body>
 
-    <div id="aviso-matty" style="
-    position: fixed;
-    top: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.85); /* Fondo negro transparente */
-    backdrop-filter: blur(5px); /* Desenfoque pro */
-    color: #FFDE7A; /* Amarillo suave */
-    padding: 12px 20px;
-    border-radius: 50px; /* Bordes redondeados */
-    border: 2px solid #FFE55C; /* Borde amarillo brillante */
-    box-shadow: 0 0 15px rgba(255, 229, 92, 0.6); /* Brillo */
-    font-family: 'Poppins', sans-serif;
-    font-size: 1rem;
-    font-weight: 600;
-    text-align: center;
-    z-index: 9999; /* Arriba de TODO */
-    pointer-events: none; /* No estorba los clics */
-    animation: fadeInSlideDown 0.8s ease-out; /* Animación de entrada */
-">
-        👀 <span style="color: #fff;">¡Sofía!</span> HOLA HOLAAA COMO ESTAAAS :3<br>
-        <span style="font-size: 0.8rem; font-weight: 400; color: #ccc;">Ahorita mismo te estoy activando la galaxia 3D ¡Te lo hice con puro esfuerzo!.
-            No cierres.</span>
-    </div>
+   <div style="text-align: center; margin-top: 20px;">
+    <a href="https://mattdevsql.github.io/Galaxy-Flowers/" style="
+        display: inline-block;
+        background: linear-gradient(135deg, #FFE55C, #FFB347);
+        color: #000;
+        text-decoration: none;
+        padding: 15px 30px;
+        border-radius: 50px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 800;
+        font-size: 1.1rem;
+        box-shadow: 0 0 20px rgba(255, 229, 92, 0.5);
+        transition: transform 0.3s ease;
+        animation: pulse 1.5s infinite;
+    ">
+        🌻 VER TU SORPRESA AQUÍ 🌻
+    </a>
+</div>
 
-    <style>
-        @keyframes fadeInSlideDown {
-            from {
-                opacity: 0;
-                transform: translateX(-50%) translateY(-20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(-50%) translateY(0);
-            }
-        }
-    </style>
+<style>
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+</style>
 
     <div id="loader-wrapper" style="
     position: fixed;
