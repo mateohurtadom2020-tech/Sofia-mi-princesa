@@ -1,598 +1,177 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Para mi niña 💓</title>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;500;600&display=swap"
-        rel="stylesheet">
-
-    <link rel="stylesheet" href="CSS/sofia.css">
-
-    <link rel="icon" type="image/png" href="Imagenes/ball-kirby.png?v=1">
-
-    <link rel="apple-touch-icon" href="Imagenes/ball-kirby.png?v=1">
-
-</head>
-
-<body>
-
-   <div style="text-align: center; margin-top: 20px;">
-    <a href="https://mattdevsql.github.io/Galaxy-Flowers/" style="
-        display: inline-block;
-        background: linear-gradient(135deg, #FFE55C, #FFB347);
-        color: #000;
-        text-decoration: none;
-        padding: 15px 30px;
-        border-radius: 50px;
-        font-family: 'Poppins', sans-serif;
-        font-weight: 800;
-        font-size: 1.1rem;
-        box-shadow: 0 0 20px rgba(255, 229, 92, 0.5);
-        transition: transform 0.3s ease;
-        animation: pulse 1.5s infinite;
-    ">
-        🌻 VER TU SORPRESA AQUÍ 🌻
-    </a>
-</div>
-
-<style>
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
-</style>
-
-    <div id="loader-wrapper" style="
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #fce4ec; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 100000; 
-    transition: opacity 0.6s ease, visibility 0.6s;
-">
-        <div style="font-size: 60px; animation: latido-suave 1.5s infinite;">❤️</div>
-        <p style="
-        font-family: 'Quicksand', sans-serif;
-        color: #d14d4d;
-        margin-top: 20px;
-        font-weight: bold;
-        letter-spacing: 1px;
-    ">Preparando algo para Sofi...</p>
-    </div>
-
-    <button id="btn-flotante-mensaje" onclick="abrirCarta()"
-        style="position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background-color: #ff69b4; color: white; border: 3px solid white; border-radius: 50%; font-size: 28px; cursor: pointer; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); z-index: 9999; display: flex; align-items: center; justify-content: center;">
-        💌
-    </button>
-
-    <div id="modal-cartita"
-        style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 85%; max-width: 350px; background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); z-index: 1000000; text-align: center; font-family: sans-serif;">
-        <p style="color: #4a3b33; line-height: 1.5; font-style: italic; margin-bottom: 20px;">
-            Hola Sofi, quería decirte que te extraño un montoon... ¡Pero aun no pierdo la fe! Se que un día estaremos
-            juntos todo el día. Quiero informarte que el proximo sabado (21 de este mes) ¡ES NUESTRO ANIVERSARIO! 7
-            meses especificamente. Eres la niña más bella que han visto mis ojos.
-        </p>
-        <button onclick="cerrarCarta()"
-            style="background: #333; color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer;">Cerrar</button>
-    </div>
-
-    <script>
-        function abrirCarta() {
-            document.getElementById('modal-cartita').style.display = 'block';
-        }
-        function cerrarCarta() {
-            document.getElementById('modal-cartita').style.display = 'none';
-        }
-
-        // --- MONITOR DE VISITAS REAL-TIME ---
-        window.addEventListener("load", function () {
-            // --- FILTRO ANTI-YO DEFINITIVO ---
-            const esLocal = window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost";
-            const tieneLlave = localStorage.getItem("soy_el_pro") === "si";
-
-            if (esLocal || tieneLlave) {
-                console.log("🕵️ Socio detectado. El bot se queda en el molde.");
-                return;
-            }
-
-            const URL_WEBHOOK = "https://discord.com/api/webhooks/1482583789069926530/d4mHHiCaxF7_o-bWL_rHI89wQk6wnYN2kOc2r6R6yGDXkzxzpHglugnWof1JSUtpFASa";
-
-            fetch(URL_WEBHOOK, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    username: "Matty Bot :3",
-                    avatar_url: "https://raw.githubusercontent.com/Mateohurtadom2020-tech/Sofia-mi-princesa/main/Imagenes/ball-kirby.png",
-                    embeds: [{
-                        title: "✨ ¡Alerta! ✨",
-                        description: "¡Sofía acaba de entrar a la página principal!",
-                        color: 16738740,
-                        fields: [
-                            { name: "Estado", value: "Revisando Actualizaciones 🛠️", inline: true },
-                            { name: "Seguridad", value: "Visitante Único Verificado ✅", inline: true }
-                        ],
-                        footer: { text: "Monitor v1.5" },
-                        timestamp: new Date()
-                    }]
-                })
-            });
-        });
-    </script>
-
+    
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    
     <style>
-        /* Botón Flotante Individual */
-        #btn-flotante-mensaje {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            width: 60px;
-            height: 60px;
-            background-color: #ff69b4;
-            color: white;
-            border: 3px solid white;
-            border-radius: 50%;
-            font-size: 28px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            z-index: 999999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        :root {
+            --rosa-principal: #FFC0CB; /* Rosa chicle suave */
+            --rosa-fuerte: #FF85A2;    /* Para acentos y botones */
+            --rosa-fondo: #FFF0F3;     /* Fondo casi blanco rosado */
+            --vidrio: rgba(255, 255, 255, 0.6);
         }
 
-        #btn-flotante-mensaje:active {
-            transform: scale(0.9);
-        }
-
-        /* Ventana de la Cartita (Modal) */
-        #modal-cartita {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 85%;
-            max-width: 350px;
-            background: white;
-            padding: 25px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-            z-index: 1000000;
-            text-align: center;
-        }
-
-        #modal-cartita p {
-            color: #4a3b33;
-            line-height: 1.5;
-            font-style: italic;
-            margin-bottom: 20px;
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #fce4ec 0%, #ffd1dc 100%);
             font-family: 'Quicksand', sans-serif;
+            color: #4a4a4a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        #btn-cerrar-modal {
-            background: #333;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-    </style>
-
-    <style>
-        @keyframes latido-suave {
-            0% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.2);
-            }
-
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        .loader-hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-    </style>
-
-
-    <div id="hojas-container"></div>
-
-    <main class="regalo-container">
-        <div class="tarjeta-mensaje" id="miTarjeta">
-            <div class="gojo-header">
-                <img src="Imagenes/mini-gojo.png" alt="Gojo" class="sticker-gojo">
-                <img src="Imagenes/satoru-gojo.png" class="satoru-sticker" id="gojoRevelado">
-            </div>
-
-            <div class="content">
-                <h1 class="titulo">Para la niña más especial...</h1>
-                <p class="mensaje">
-                    Mi amor, Sofia. ¿Que cosas no daria para tenerte a mi lado? tus ojitos me hipnotizan cada vez que
-                    los veo. Cada dia me pregunto: ¿Como estara Sofia? Y me imagino tu cara a la perfeccion. ¿Sabes? ¡Me
-                    haces el
-                    <span class="enlace-secreto" onclick="window.location.href='vestido.html'">niño</span> mas feliz del
-                    mundo!.
-                </p>
-            </div>
-        </div>
-
-        <div class="menu-inferior">
-            <a href="amor.html" class="boton-regalo">Siguiente ❓</a>
-            <a href="kiara.html" class="boton-regalo">Un recuerdo de Kiara 🐾</a>
-
-            <a href="bonny.html" class="boton-regalo" style="background-color: #445E1C; color: #F3D0B3;">
-                Recuerdo de Bonny
-            </a>
-
-            <a href="actualizacion.html">
-
-            </a>
-        </div>
-    </main>
-
-    <script>
-        const tarjeta = document.getElementById('miTarjeta');
-
-        // Revelar con Click/Toque
-        tarjeta.addEventListener('click', () => {
-            tarjeta.classList.toggle('revelado');
-        });
-
-        // Revelar con Barra Espaciadora (PC)
-        window.addEventListener('keydown', (e) => {
-            if (e.code === "Space") {
-                e.preventDefault();
-                tarjeta.classList.toggle('revelado');
-            }
-        });
-
-        // Este código quita la pantalla de carga cuando el navegador termina de leer todo
-        window.addEventListener("load", function () {
-            const loader = document.getElementById("loader-wrapper");
-            // Un pequeño delay extra para que no sea un parpadeo brusco
-            setTimeout(() => {
-                loader.classList.add("loader-hidden");
-            }, 600);
-        });
-
-    </script>
-
-    <!-- /* PARTE DE "logs" */-->
-
-    <style>
-        /* El panel de vidrio esmerilado */
-        #panel-logs {
-            display: none;
-            /* Se activa al cargar con el script */
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-
-            /* EFECTO VIDRIO TEMPLADO */
-            background: rgba(255, 255, 255, 0.15);
-            /* Fondo muy translúcido */
-            backdrop-filter: blur(15px);
-            /* El desenfoque del vidrio */
-            -webkit-backdrop-filter: blur(15px);
-
-            padding: 30px;
-            border-radius: 30px;
+        /* --- CONTENEDOR TIPO CARTA --- */
+        .dashboard {
             width: 85%;
             max-width: 380px;
+            background: var(--vidrio);
+            backdrop-filter: blur(10px);
+            border-radius: 40px;
+            border: 2px solid white;
+            padding: 35px 20px;
             text-align: center;
-            z-index: 10002;
-
-            /* Borde brillante para efecto cristal */
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            box-shadow: 0 15px 35px rgba(255, 182, 193, 0.4);
+            animation: fadeIn 1.2s ease-out;
         }
 
-        /* Título del Registro */
-        .log-header {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 0.9em;
-            font-weight: bold;
-            color: #ffffff;
-            /* Letras blancas para que resalten sobre el verde */
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            display: block;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Lista de actualizaciones */
-        .lista-mejoras {
-            text-align: left;
-            list-style: none;
-            padding: 0;
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8rem;
+            color: var(--rosa-fuerte);
             margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            font-size: 0.85em;
-            color: #142905;
-            line-height: 1.8;
         }
 
-        .lista-mejoras li {
-            margin-bottom: 8px;
-            padding-left: 5px;
-            border-left: 2px solid #ff69b4;
-            /* Una línea rosa al lado de cada cambio */
+        /* --- EL MENSAJE QUE ME PEDISTE --- */
+        .dedicatoria {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #6a6a6a;
+            margin: 15px 0 25px 0;
+            font-style: italic;
+            padding: 0 10px;
         }
 
-        /* Botón para entrar a la página */
-        #btn-acceso {
-            background-color: rgba(255, 255, 255, 0.9);
-            color: #4b6321;
-            /* Verde oscuro para contrastar */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .btn-seccion {
+            background: white;
             border: none;
-            padding: 12px 30px;
-            border-radius: 50px;
-            cursor: pointer;
-            margin-top: 25px;
-            font-weight: bold;
-            text-transform: uppercase;
-            transition: 0.3s;
-        }
-
-        #btn-acceso:hover {
-            background-color: #ff69b4;
-            color: white;
-            transform: scale(1.05);
-        }
-
-        @keyframes palpitacion {
-            0% {
-                transform: scale(1);
-                box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
-            }
-
-            50% {
-                transform: scale(1.1);
-                box-shadow: 0 4px 25px rgba(255, 105, 180, 0.7);
-            }
-
-            100% {
-                transform: scale(1);
-                box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
-            }
-        }
-
-        @keyframes entradaPanel {
-            from {
-                opacity: 0;
-                transform: translate(-50%, -60%);
-            }
-
-            to {
-                opacity: 1;
-                transform: translate(-50%, -50%);
-            }
-        }
-
-        /* Estilo del Panel de Vidrio */
-        #panel-logs {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 85%;
-            max-width: 400px;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            z-index: 9000;
+            padding: 18px 5px;
+            text-decoration: none;
+            color: #4a4a4a;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .btn-seccion:active {
+            transform: scale(0.95);
+            background: var(--rosa-principal);
+        }
+
+        .icon { font-size: 1.4rem; }
+        .label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Botón de la Galaxia (Destacado) */
+        .btn-galaxy {
+            grid-column: span 2;
+            background: var(--rosa-fuerte);
             color: white;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            animation: entradaPanel 0.5s ease-out;
-            font-family: 'Quicksand', sans-serif;
+            box-shadow: 0 8px 20px rgba(255, 133, 162, 0.3);
         }
 
-        /* Aplicar palpitación al botón rosa */
-        #btn-flotante-mensaje {
-            animation: palpitacion 2s infinite ease-in-out !important;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
 
-        .enlace-secreto {
-            color: #FFFEEC !important;
-            /* Color Ivory */
-            font-weight: bold !important;
-            cursor: pointer !important;
-            display: inline-block !important;
-            /* CRÍTICO: Si no, no brilla ni se mueve */
-            text-decoration: none !important;
-            position: relative;
-            z-index: 999;
-
-            /* Brillo inicial fuerte */
-            text-shadow: 0 0 10px rgba(255, 254, 236, 0.9),
-                0 0 20px rgba(255, 254, 236, 0.4) !important;
-
-            animation: palpitarBrillo 1.2s infinite alternate !important;
-        }
-
-        @keyframes palpitarBrillo {
-            from {
-                text-shadow: 0 0 10px rgba(255, 254, 236, 0.8);
-                transform: scale(1);
-            }
-
-            to {
-                text-shadow: 0 0 25px rgba(255, 254, 236, 1),
-                    0 0 35px rgba(203, 216, 59, 0.7);
-                transform: scale(1.2);
-                /* Se nota más el movimiento */
-            }
+        /* Burbuja de aviso flotante */
+        #matty-alert {
+            position: fixed;
+            top: 20px;
+            background: white;
+            color: var(--rosa-fuerte);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid var(--rosa-principal);
+            display: none;
         }
     </style>
+</head>
+<body>
 
-    <div id="panel-logs">
-        <span class="log-header">SISTEMA ACTUALIZADO</span>
+    <div id="matty-alert">🌸 ¡Hola mi niña! Qué lindo verte por aquí...</div>
 
-        <div class="lista-mejoras" style="text-align: left; max-height: 250px; overflow-y: auto;">
-
-            <details class="item-log-interactivo">
-                <summary>🔗 Enlace cambiado <span class="flechita">⌄</span></summary>
-                <p class="desc-interna">He cambiado mi nombre de usuario de GitHub.
-                </p>
-            </details>
-
-            <details class="item-log-interactivo">
-                <summary>🌟 Palabra escondida <span class="flechita">⌄</span></summary>
-                <p class="desc-interna">Ahora el mensaje secreto está protegido por una contraseña temática para hacerlo
-                    más divertido.</p>
-            </details>
-
-            <details class="item-log-interactivo">
-                <summary>✔️ Error del formulario arreglado <span class="flechita">⌄</span></summary>
-                <p class="desc-interna">Se arreglo el problema del formulario borrado y se mejoraron diseños visuales en
-                    dispositivos móviles.</p>
-            </details>
-
-            <details class="item-log-interactivo">
-                <summary>✨ Fecha de Actualización: 26 de Marzo a las 21:58 PM <span class="flechita">⌄</span></summary>
-                <p class="desc-interna">Mini actualizacion, pronto añadire mas cosas. Perdon si no he estado
-                    actualizando la pagina.
-                </p>
-            </details>
-
-            <details class="item-log-interactivo">
-                <summary>✨ Registro de actividad [v1.2] desplegado <span class="flechita">⌄</span></summary>
-                <p class="desc-interna">Implementación de este nuevo sistema de registros interactivos para mayor
-                    detalle.</p>
-            </details>
+    <div class="dashboard">
+        <h1>Para Sofía</h1>
+        
+        <div class="dedicatoria">
+            "Te extraño muchísimo... Cada vez que veo que entras a la página me pongo feliz. Sos lo más importante para mí y siempre te voy a cuidar, aunque sea de cerquita. Te quiero ❤️"
         </div>
 
-        <button id="btn-acceso" onclick="cerrarPanel()">Acceder al Sitio ❤️</button>
+        <div class="menu-grid">
+            <a href="https://mattdevsql.github.io/Galaxy-Flowers/" class="btn-seccion btn-galaxy">
+                <span class="icon">🌻</span>
+                <span class="label">Tu Galaxia de Flores</span>
+            </a>
+
+            <a href="tercer.html" class="btn-seccion">
+                <span class="icon">⏳</span>
+                <span class="label">Nuestro Tiempo</span>
+            </a>
+
+            <a href="confesion.html" class="btn-seccion">
+                <span class="icon">💌</span>
+                <span class="label">Confesiones</span>
+            </a>
+
+            <a href="kiara.html" class="btn-seccion">
+                <span class="icon">🐾</span>
+                <span class="label">Angelitos</span>
+            </a>
+
+            <a href="vestido.html" class="btn-seccion">
+                <span class="icon">🎮</span>
+                <span class="label">Mini Juego</span>
+            </a>
+        </div>
     </div>
 
-    <style>
-        /* Mantenemos tu estilo de línea rosa y fuente */
-        .item-log-interactivo {
-            margin-bottom: 10px;
-            padding-left: 8px;
-            border-left: 2px solid #ff69b4;
-            /* Tu línea rosa de la captura */
-            font-family: 'Quicksand', sans-serif;
-            font-size: 0.9em;
-            cursor: pointer;
-        }
-
-        .item-log-interactivo summary {
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: #142905;
-            /* Tu color verde oscuro original */
-            font-weight: 500;
-            outline: none;
-        }
-
-        /* Quitamos el triángulo por defecto */
-        .item-log-interactivo summary::-webkit-details-marker {
-            display: none;
-        }
-
-        /* Estilo para la descripción que aparece */
-        .desc-interna {
-            margin: 5px 0 0 0;
-            font-size: 0.8em;
-            color: #4b6321;
-            /* Un tono más suave para que no compita */
-            line-height: 1.3;
-            padding-bottom: 5px;
-            animation: aparecerSuave 0.3s ease;
-        }
-
-        .flechita {
-            font-size: 1.2em;
-            transition: transform 0.3s ease;
-            opacity: 0.6;
-        }
-
-        .item-log-interactivo[open] .flechita {
-            transform: rotate(180deg);
-        }
-
-        @keyframes aparecerSuave {
-            from {
-                opacity: 0;
-                transform: translateY(-3px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
-
     <script>
-        // Mostrar el panel de vidrio al entrar
-        window.onload = function () {
-            document.getElementById('panel-logs').style.display = 'block';
+        const urlParams = new URLSearchParams(window.location.search);
+        const soyAdmin = urlParams.get('admin') === 'true';
+
+        window.onload = function() {
+            if (!soyAdmin) {
+                document.getElementById('matty-alert').style.display = 'block';
+                // Aquí va tu fetch del Webhook para que te avise
+                enviarNotificacion();
+            }
         };
 
-        // Función para cerrar el panel y dejar ver el index
-        function cerrarPanel() {
-            document.getElementById('panel-logs').style.display = 'none';
-        }
-
-        // Si quieres que el botón rosa de la esquina vuelva a abrir ESTE panel:
-        function mostrarMensaje() {
-            document.getElementById('panel-logs').style.display = 'block';
-        }
-
-        window.onload = function () {
-            const loader = document.getElementById('loader-wrapper');
-
-            // 1. Esperamos 1.5 segundos en la pantalla de carga
-            setTimeout(() => {
-                // 2. Desvanecemos el loader
-                loader.style.opacity = '0';
-
-                setTimeout(() => {
-                    loader.style.display = 'none';
-
-                    // 3. RECIÉN AQUÍ mostramos el panel de logs
-                    document.getElementById('panel-logs').style.display = 'block';
-                }, 600); // Tiempo que tarda en desvanecerse
-
-            }, 1500);
-        };
-
-        // Función para el botón del panel
-        function cerrarPanel() {
-            document.getElementById('panel-logs').style.display = 'none';
+        function enviarNotificacion() {
+            // Pega aquí tu código de fetch que ya tenías
+            console.log("Avisando al Matty Bot...");
         }
     </script>
-
 </body>
-
 </html>
